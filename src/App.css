@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+body { 
+    padding-top: 65px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.slight-right {
+    margin-left: 2%
+}
+#movie-results img {
+    display: block;
+    margin: 1rem;
+}
+#movie-title {
+    margin-top: 10%;
+}
