@@ -13,4 +13,5 @@ body {
 }
 #movie-title {
     margin-top: 10%;
+    cursor: pointer;
 }

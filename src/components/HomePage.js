@@ -11,14 +11,14 @@ import {
 export default (props) => {
   return (
     <div>
-        {props.searchClicked === false &&
+        {!props.searchClicked &&
           <Jumbotron>
             <Grid>
               <Row>
                 <Col xs={12} md={8}>
                   <h1>
                     Welcome to MovieDex!
-                    <img src={require("./Fake-logo.png")} responsive width="100" className="slight-right" alt="logo"/> 
+                    <img src={require("../img/Fake-logo.png")} responsive width="100" className="slight-right" alt="logo"/> 
                   </h1>
                   <p>
                     This is a simple site built using the OMDb API. Feel free to use the search bar above to access a huge database of movies
@@ -31,7 +31,7 @@ export default (props) => {
             </Grid>
           </Jumbotron>
         }
-        <Movies movies={props.movies} />
+        <Movies movies={props.movies} searchClicked={props.searchClicked}/>
       </div>
   )
 }
