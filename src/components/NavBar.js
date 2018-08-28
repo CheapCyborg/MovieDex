@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomePage from './HomePage';
+import HomePage from "./HomePage";
 import {
   Navbar,
   Nav,
@@ -11,17 +11,17 @@ import {
 } from "react-bootstrap";
 
 class NavigationBar extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      search: '',
+      search: "",
       searchClicked: false,
-      yearSelect: '',
-      years: [], 
+      yearSelect: "",
+      years: [],
       movies: [],
       showError: false,
-      error: ''
-    }
+      error: ""
+    };
   }
   componentWillMount = () => {
     for (let i = 1940; i <= 2018; i++) {
@@ -29,21 +29,23 @@ class NavigationBar extends Component {
       yearList.push(i);
       this.setState({
         years: yearList
-      })
+      });
     }
-  }
-  handleChange = (e) => {
+  };
+  handleChange = e => {
     this.setState({
       search: e.target.value
     });
-  }
-  handleDateChange = (e) => {
+  };
+  handleDateChange = e => {
     this.setState({
       yearSelect: e.target.value
-    })
-  }
-  handleSubmit = (e) => {
-    let url = `https://www.omdbapi.com/?s=${this.state.search}&y=${this.state.yearSelect}&plot=full&apikey=8509c42b`;
+    });
+  };
+  handleSubmit = e => {
+    let url = `https://www.omdbapi.com/?s=${this.state.search}&y=${
+      this.state.yearSelect
+    }&plot=full&apikey=8509c42b`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -57,72 +59,84 @@ class NavigationBar extends Component {
           this.setState({
             movies: data.Search,
             searchClicked: true
-          })
+          });
         }
       });
-      console.log(url);
+    console.log(url);
     e.preventDefault();
-  }
+  };
   handleDismiss = () => {
     this.setState({ showError: false });
-  }
+  };
   refresh = () => {
-    window.location.reload()
-  }
+    window.location.reload();
+  };
   render() {
     let yearOptions = this.state.years.map((year, i) => {
-      return(
-        <option key={i}>{year}</option>
-      );
+      return <option key={i}>{year}</option>;
     });
     return (
-        <div>
-          {this.state.showError &&
-            <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
-              <h4>Oh snap! You got an error!</h4>
-              <p>
-                Reported problem was <em>"{this.state.error}"</em> Please make sure the title is in the correct format ex.(Spider-Man or spider-man)
-              </p>
-              <p>
-                <Button onClick={this.handleDismiss}>Hide Alert</Button>
-              </p>
-            </Alert>
-          }
-          <Navbar inverse collapseOnSelect fixedTop={true} fluid={true}>
-            <Navbar.Header pullleft="true">
-              <Navbar.Brand>
-                <a href="#brand" onClick={this.refresh}>MovieDex</a>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <Nav pullleft="true">
-                <NavItem eventKey={1} href="#" onClick={this.refresh}>
-                  Home
-                </NavItem>
-                <NavItem eventKey={2} href="#">
-                  About
-                </NavItem>
-              </Nav>
-              <Navbar.Form pullRight={true}>
+      <div>
+        {this.state.showError && (
+          <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
+            <h4>Oh snap! You got an error!</h4>
+            <p>
+              Reported problem was <em>"{this.state.error}"</em> Please make
+              sure the title is in the correct format ex.(Spider-Man or
+              spider-man)
+            </p>
+            <p>
+              <Button onClick={this.handleDismiss}>Hide Alert</Button>
+            </p>
+          </Alert>
+        )}
+        <Navbar inverse collapseOnSelect fixedTop={true} fluid={true}>
+          <Navbar.Header pullleft="true">
+            <Navbar.Brand>
+              <a href="#brand" onClick={this.refresh}>
+                MovieDex
+              </a>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullleft="true">
+              <NavItem eventKey={1} href="#" onClick={this.refresh}>
+                Home
+              </NavItem>
+              <NavItem eventKey={2} href="#">
+                About
+              </NavItem>
+            </Nav>
+            <Navbar.Form pullRight={true}>
               <form onSubmit={this.handleSubmit.bind(this)}>
                 <FormGroup>
-                  <FormControl placeholder="Search" value={this.state.search} onChange={this.handleChange.bind(this)}/>
-                </FormGroup>{' '} 
-              <FormGroup controlId="formControlsSelect">
-                <FormControl componentClass="select" onChange={this.handleDateChange.bind(this)}>
-                  <option value="">Year</option>
-                  {yearOptions}
-                  <option value="other">...</option>
-                </FormControl>
-              </FormGroup>
+                  <FormControl
+                    placeholder="Search"
+                    value={this.state.search}
+                    onChange={this.handleChange.bind(this)}
+                  />
+                </FormGroup>{" "}
+                <FormGroup controlId="formControlsSelect">
+                  <FormControl
+                    componentClass="select"
+                    onChange={this.handleDateChange.bind(this)}
+                  >
+                    <option value="">Year</option>
+                    {yearOptions}
+                    <option value="other">...</option>
+                  </FormControl>
+                </FormGroup>
                 <Button type="submit">Search</Button>
-                </form>
-              </Navbar.Form>
-            </Navbar.Collapse>
-          </Navbar>
-          <HomePage movies={this.state.movies} searchClicked={this.state.searchClicked}/>
-        </div>
+              </form>
+            </Navbar.Form>
+          </Navbar.Collapse>
+        </Navbar>
+        <HomePage
+          movies={this.state.movies}
+          searchClicked={this.state.searchClicked}
+        />
+      </div>
     );
   }
 }

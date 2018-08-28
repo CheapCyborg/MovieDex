@@ -1,17 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
 
-body { 
-    padding-top: 65px;
-    font-family: 'Roboto Condensed', sans-serif;
+body {
+  padding-top: 65px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .slight-right {
-    margin-left: 2%
+  margin-left: 2%;
 }
 #movie-results img {
-    display: block;
-    margin: 1rem;
+  display: block;
+  margin: 1rem;
 }
 #movie-title {
-    margin-top: 10%;
-    cursor: pointer;
+  margin-top: 10%;
+  cursor: pointer;
+}
+#movie-info-title {
+  font-size: 5rem;
+  font-weight: 600;
+}
+.movie-info-description {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+@media (min-width: 1050px) {
+  #movie-info {
+    width: 50%;
+    max-width: 100%;
+    margin: auto;
+    padding-top: 2rem;
+  }
 }
