@@ -11,7 +11,7 @@ export default class Movies extends Component {
     }
   }
     getMovieInfo = (id) => {
-    let url = `http://www.omdbapi.com/?i=${id}&plot=full&apikey=8509c42b`
+    let url = `https://www.omdbapi.com/?i=${id}&plot=full&apikey=8509c42b`
     console.log(url)
     fetch(url)
     .then(response => response.json())

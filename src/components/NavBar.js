@@ -43,7 +43,7 @@ class NavigationBar extends Component {
     })
   }
   handleSubmit = (e) => {
-    let url = `http://www.omdbapi.com/?s=${this.state.search}&y=${this.state.yearSelect}&plot=full&apikey=8509c42b`;
+    let url = `https://www.omdbapi.com/?s=${this.state.search}&y=${this.state.yearSelect}&plot=full&apikey=8509c42b`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
